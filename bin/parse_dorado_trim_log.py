@@ -56,8 +56,8 @@ def select_adapter_primer_detection_lines(adapter_primer_detection_file: Path):
                 # While most lines look like:
                 # [2024-10-02 15:30:51.770] [trace] Detected adapter/primer PCR_PSK_rev in interval rear
                 # So we need to remove the "> Output records written: " part.
-                if ':' in line:
-                    line = line.split(':')[-1].strip()
+                if line.startswith('> Output records written: '):
+                    line = line[len('> Output records written: '):]
                 yield line
 
 
